@@ -1,0 +1,75 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--size-width-100);
+  height: var(--size-height-100);
+  z-index: var(--z-index-10);
+  background: var(--color-black-light);
+}
+
+.modal {
+  position: fixed;
+  top: var(--size-height-15);
+  left: var(--size-width-10);
+  width: var(--size-width-80);
+  z-index: var(--z-index-100);
+  overflow: scroll;
+  border-radius: var(--size-spacing-5);
+  max-height: var(--size-height-65);
+  background: var(--color-green-dark);
+}
+
+.header {
+  background: var(--color-green-lighter);
+  padding: var(--size-spacing-100);
+  border-radius: 0 0 var(--size-spacing-5) var(--size-spacing-5);
+  overflow: scroll;
+}
+
+.content {
+  padding: var(--size-spacing-100);
+  background: var(--color-white);
+  color: var(--color-red);
+}
+.header h2,
+.content h2 {
+  text-align: center;
+}
+
+.actions {
+  padding: var(--size-spacing-100);
+}
+.actions a {
+  color: var(--color-wheat);
+}
+.actions a:hover {
+  text-decoration: underline;
+}
+.button {
+  border: var(--size-spacing-1) solid var(--color-green-light);
+  background: var(--color-green-light);
+  color: var(--color-white);
+  padding: 0 var(--size-spacing-200);
+  cursor: pointer;
+  border-radius: var(--size-spacing-5);
+  font-size: var(--size-spacing-100);
+  float: right;
+}
+
+.button:hover,
+.button:active {
+  background: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-green-light);
+}
+
+.button:focus {
+  outline: none;
+}
+@media (min-width: 768px) {
+  .modal {
+    left: calc(var(--size-width-40) - var(--size-spacing-2000));
+    width: var(--size-spacing-6500);
+  }
+}

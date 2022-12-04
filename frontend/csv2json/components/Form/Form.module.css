@@ -1,0 +1,63 @@
+.container {
+  background-color: var(--color-green-lighter);
+  padding: var(--size-spacing-100);
+  border-radius: var(--size-spacing-5);
+  overflow: hidden;
+  clear: both;
+}
+.input {
+  padding: var(--size-spacing-100);
+  width: 100%;
+}
+
+.label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: var(--size-spacing-050);
+  font-size: var(--size-spacing-200);
+}
+
+.input input {
+  font: inherit;
+  display: block;
+  width: 100%;
+  border: var(--size-spacing-1) solid var(--color-white);
+  padding: var(--size-spacing-015);
+  margin-bottom: var(--size-spacing-050);
+}
+
+.input input:focus {
+  outline: none;
+}
+.error {
+  color: var(--color-red);
+  font-weight: bold;
+  text-align: center;
+  padding-top: var(--size-spacing-100);
+}
+.errorInput {
+  border: var(--size-spacing-1) solid var(--color-red);
+  background: rgb(236, 116, 116);
+}
+.button {
+  border: var(--size-spacing-1) solid var(--color-green-light);
+  background: var(--color-green-light);
+  color: var(--color-white);
+  padding: var(--size-spacing-050) var(--size-spacing-200);
+  cursor: pointer;
+  border-radius: var(--size-spacing-5);
+  margin-top: var(--size-spacing-100);
+  float: right;
+  font-size: var(--size-spacing-100);
+}
+
+.button:hover,
+.button:active {
+  background: white;
+  color: #000;
+  border-color: #009688;
+}
+
+.button:focus {
+  outline: none;
+}

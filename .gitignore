@@ -1,0 +1,38 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+frontend/csv2json/node_modules
+frontend/csv2json/.pnp
+frontend/csv2json/.pnp.js
+api/csvtojsonapi/node_modules
+
+# testing
+frontend/csv2json/coverage
+
+# next.js
+frontend/csv2json/.next/
+frontend/csv2json/out/
+
+# production
+frontend/csv2json/build
+
+# misc
+frontend/csv2json/.DS_Store
+.DS_Store
+frontend/csv2json/*.pem
+
+# debug
+frontend/csv2json/npm-debug.log*
+frontend/csv2json/yarn-debug.log*
+frontend/csv2json/yarn-error.log*
+frontend/csv2json/.pnpm-debug.log*
+
+# local env files
+frontend/csv2json/.env*.local
+
+# vercel
+frontend/csv2json/.vercel
+
+# typescript
+frontend/csv2json/*.tsbuildinfo
+frontend/csv2json/next-env.d.ts

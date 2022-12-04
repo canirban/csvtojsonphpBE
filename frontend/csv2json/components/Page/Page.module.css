@@ -1,0 +1,20 @@
+.header {
+  background-color: var(--color-green-dark);
+  height: var(--size-height-10);
+}
+.header h1 {
+  margin: 0;
+  padding: var(--size-spacing-100);
+  text-align: center;
+}
+.main {
+  min-height: var(--size-height-80);
+  background: var(--color-green-lighter);
+}
+.footer {
+  background-color: var(--color-green-dark);
+  font-weight: bold;
+  padding: var(--size-spacing-100);
+  text-align: center;
+  height: var(--size-height-10);
+}
