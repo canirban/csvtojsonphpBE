@@ -8,8 +8,8 @@ class ConverterController
 
             $service=new ConverterService();
             $content=json_decode(file_get_contents('php://input'))->content;
-            $service->getJson($content);
-          
+            echo $service->converter($content);
+         
     }
 
 }?>

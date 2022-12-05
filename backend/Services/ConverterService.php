@@ -3,7 +3,19 @@
 class ConverterService
 {
     var $error;
-    public function getJson($content)
+
+    public function converter($content){
+        global $error;
+        try{
+            return $this->getJson($content);
+        }catch(Error $e){
+            $message = "Error occured while converting. Please try again later";
+            return $this->getError($message);
+        }
+        
+    }
+
+    private function getJson($content)
     {   global $error;
         //get csv as stream
         $csvResource=$this->getCsvResource($content);
@@ -16,11 +28,13 @@ class ConverterService
             //merge
             $mergedArray=$this->mergeItems($filteredArray);
             $mergedArr = array("json"=>array_merge(array(), $mergedArray),"error"=>$error);
-            echo(trim(json_encode($mergedArr, JSON_UNESCAPED_SLASHES), '[]'));
-        }else{
-            $error=$error.'Error at Header Please Enter a valid header, header must be similar to this ["Row ID","Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Customer Name","Segment","Country","City","State","Postal Code","Region","Product ID","Category","Sub-Category","Product Name","Sales","Quantity","Discount","Profit"]';
-            echo trim(json_encode(array("json"=>[],"error"=>$error), JSON_UNESCAPED_SLASHES), '[]');
+            return (json_encode($mergedArr,  JSON_NUMERIC_CHECK | JSON_UNESCAPED_SLASHES));
         }
+
+        $message='Error at Header Please Enter a valid header, header must be similar to this ["Row ID","Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Customer Name","Segment","Country","City","State","Postal Code","Region","Product ID","Category","Sub-Category","Product Name","Sales","Quantity","Discount","Profit"]';
+        return $this->getError($message);
+
+            
     }
 
 
@@ -78,7 +92,7 @@ class ConverterService
         global $error;
 
         $baseUrl="https://www.foo.com";
-        $a=array();
+        $lineItemsArray=array();
         foreach($csvArray as $element){
             
             $dateComparator= $this->getIsoDateCompareValue();
@@ -122,7 +136,7 @@ class ConverterService
             $element = (object) array_merge(
                  (array)$element, array( 'orders' => $orders ) );
             
-            array_push($a,$element);
+            array_push($lineItemsArray,$element);
 
             }else{
 
@@ -131,7 +145,7 @@ class ConverterService
             
             }
         }
-        return $a;
+        return $lineItemsArray;
     }
     private function mergeItems($arr){
 
@@ -185,6 +199,12 @@ class ConverterService
         ,"Ship Mode","Customer ID","Segment","Country","City",
         "State","Postal Code","Region","Product ID","Category","Sub-Category","Product Name",
         "Sales", "Quantity","Discount","Profit");
+    }
+
+    private function getError($message){
+        global $error;
+        $error=$error.$message;
+        return trim(json_encode(array("json"=>[],"error"=>$error), JSON_UNESCAPED_SLASHES), '[]');
     }
 
 }
