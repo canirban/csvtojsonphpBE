@@ -1,6 +1,6 @@
 # csv2jsonphpBE
 
-This repo can be divided into 3 parts
+This repo can be divided into 2 parts
 
 /backend - is a php server exposing one POST api, for CSV to JSON conversion.
 
