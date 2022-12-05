@@ -105,22 +105,7 @@ class ConverterService
                 $sales=null;
              }
 
-            unset($element->{"Row ID"});
-            unset($element->{"Ship Date"});
-            unset($element->{"Ship Mode"});
-            unset($element->{"Segment"});
-            unset($element->{"Country"});
-            unset($element->{"City"});
-            unset($element->{"State"});
-            unset($element->{"Postal Code"});
-            unset($element->{"Category"});
-            unset($element->{"Sub-Category"});
-            unset($element->{"Product Name"});
-            unset($element->{"Quantity"});
-            unset($element->{"Discount"});
-            unset($element->{"Profit"});
-            unset($element->{"Region"});
-            unset($element->{"Product ID"});
+            
 
             $lineItems=array();
                 array_push($lineItems,array(
@@ -154,12 +139,14 @@ class ConverterService
         
         for($i=0;$i<$len;$i++){
             if (isset($arr[$i])) {
+
                     $icustomerName=$arr[$i]->{"Customer Name"};
                     $iOrderId=$arr[$i]->{"Order ID"};
                     $iOrders=$arr[$i]->{"orders"};
                     $iLineItems=$iOrders[0]["line_items"];
-                    //print_r($iLineItems);
+
                 for($j=$i+1;$j<$len;$j++){
+                    
                     if (isset($arr[$j])) {
                         $jcustomerName=$arr[$j]->{"Customer Name"};
                         $jOrderId=$arr[$i]->{"Order ID"};
@@ -177,15 +164,36 @@ class ConverterService
                         }
                     }
                 }
-                unset($arr[$i]->{"Order ID"});
-                unset($arr[$i]->{"Order Date"});
-                unset($arr[$i]->{"Customer ID"});
-                unset($arr[$i]->{"Sales"});
+                $this->unSetUnUsedValues($arr[$i]);
+                
 
                 $arr[$i]=array($arr[$i]->{"Customer Name"}=>$arr[$i]->{"orders"});
              }
         }
         return $arr;
     }
+    private function unSetUnUsedValues($element){
+        unset($element->{"Order ID"});
+        unset($element->{"Order Date"});
+        unset($element->{"Customer ID"});
+        unset($element->{"Sales"});
+        unset($element->{"Row ID"});
+        unset($element->{"Ship Date"});
+        unset($element->{"Ship Mode"});
+        unset($element->{"Segment"});
+        unset($element->{"Country"});
+        unset($element->{"City"});
+        unset($element->{"State"});
+        unset($element->{"Postal Code"});
+        unset($element->{"Category"});
+        unset($element->{"Sub-Category"});
+        unset($element->{"Product Name"});
+        unset($element->{"Quantity"});
+        unset($element->{"Discount"});
+        unset($element->{"Profit"});
+        unset($element->{"Region"});
+        unset($element->{"Product ID"});
+    }
+
 }
 ?>
