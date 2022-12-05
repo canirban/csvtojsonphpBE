@@ -59,7 +59,7 @@ class ConverterService
             if($diff==0)
              $json[] = array_combine($key, $row);
              else{
-                $error=$error."\nIncorrect CSV format header doesn't match with values";
+                $error=$error."\nIncorrect CSV format encountered. Header doesn't match with values";
              }
         }
             // release file handle
@@ -148,10 +148,12 @@ class ConverterService
                 for($j=$i+1;$j<$len;$j++){
                     
                     if (isset($arr[$j])) {
+
                         $jcustomerName=$arr[$j]->{"Customer Name"};
                         $jOrderId=$arr[$i]->{"Order ID"};
                         $jOrders=$arr[$j]->{"orders"};
                         $jLineItems=$jOrders[0]["line_items"];
+
                         if($icustomerName==$jcustomerName){
 
                             if($iOrderId==$jOrderId){
@@ -173,26 +175,16 @@ class ConverterService
         return $arr;
     }
     private function unSetUnUsedValues($element){
-        unset($element->{"Order ID"});
-        unset($element->{"Order Date"});
-        unset($element->{"Customer ID"});
-        unset($element->{"Sales"});
-        unset($element->{"Row ID"});
-        unset($element->{"Ship Date"});
-        unset($element->{"Ship Mode"});
-        unset($element->{"Segment"});
-        unset($element->{"Country"});
-        unset($element->{"City"});
-        unset($element->{"State"});
-        unset($element->{"Postal Code"});
-        unset($element->{"Category"});
-        unset($element->{"Sub-Category"});
-        unset($element->{"Product Name"});
-        unset($element->{"Quantity"});
-        unset($element->{"Discount"});
-        unset($element->{"Profit"});
-        unset($element->{"Region"});
-        unset($element->{"Product ID"});
+        $removeKeys=$this->getRemoveKeys();
+        foreach($removeKeys as $key) {
+            unset($element->$key);
+         }
+    }
+    private function getRemoveKeys(){
+        return array("Row ID","Order ID","Order Date","Ship Date"
+        ,"Ship Mode","Customer ID","Segment","Country","City",
+        "State","Postal Code","Region","Product ID","Category","Sub-Category","Product Name",
+        "Sales", "Quantity","Discount","Profit");
     }
 
 }
